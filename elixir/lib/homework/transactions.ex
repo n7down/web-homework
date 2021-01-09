@@ -90,6 +90,25 @@ defmodule Homework.Transactions do
   end
 
   @doc """
+  Search for a transaction amount by a given min and max.
+
+  ## Examples
+
+      iex> search_transaction(user)
+      {:ok, %User{}}
+
+      iex> search_transaction(user)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def search_transaction(min, max) do 
+    query = from t in Transaction, 
+      where: (t.ammount > ^min and t.ammount < ^max)
+    Repo.all(query)
+  end
+
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking transaction changes.
 
   ## Examples

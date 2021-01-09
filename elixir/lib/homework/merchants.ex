@@ -90,6 +90,24 @@ defmodule Homework.Merchants do
   end
 
   @doc """
+  Fuzzy search a merchant by name.
+
+  ## Examples
+
+      iex> search_merchant(merchant_name)
+      {:ok, %Merchant{}}
+
+      iex> search_merchant(merchant)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def search_merchant(name) do 
+    query = from m in Merchant, 
+      where: ilike(m.name, ^"%#{name}%")
+    Repo.all(query)
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking merchant changes.
 
   ## Examples

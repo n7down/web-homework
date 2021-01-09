@@ -90,6 +90,38 @@ defmodule Homework.Users do
   end
 
   @doc """
+  Search for a user by first and last name.
+
+  ## Examples
+
+      iex> search_user(user)
+      {:ok, %User{}}
+
+      iex> search_user(user)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def search_user(firstName, lastName) do 
+    query = from u in User, 
+      where: ilike(u.first_name, ^"%#{firstName}%") and ilike(u.last_name, ^"%#{lastName}%")
+    Repo.all(query)
+  end
+
+  @doc """
+  Pageinate through all users ordered by last name and first name asc given the limit and skip values.
+  Returns the results and the total number of results.
+  """
+  def pageinate(limit, skip) do
+    query = from u in User, 
+      select: u,
+      order_by: [asc: u.last_name, asc: u.first_name],
+      limit: ^limit,
+      offset: ^skip
+    results = Repo.all(query)
+    %{results: results, total_rows: length(results)}
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
 
   ## Examples
