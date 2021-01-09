@@ -108,6 +108,20 @@ defmodule Homework.Merchants do
   end
 
   @doc """
+  Pageinate through all users ordered by the merchant name asc given the limit and skip values.
+  Returns the results and the total number of results.
+  """
+  def pageinate(limit, skip) do
+    query = from m in Merchant, 
+      select: m,
+      order_by: [asc: m.name],
+      limit: ^limit,
+      offset: ^skip
+    results = Repo.all(query)
+    %{results: results, total_rows: length(results)}
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking merchant changes.
 
   ## Examples

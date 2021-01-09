@@ -107,6 +107,19 @@ defmodule Homework.Transactions do
     Repo.all(query)
   end
 
+  @doc """
+  Pageinate through all users ordered by the transaction id asc given the limit and skip values.
+  Returns the results and the total number of results.
+  """
+  def pageinate(limit, skip) do
+    query = from t in Transaction, 
+      select: t,
+      order_by: [asc: t.id],
+      limit: ^limit,
+      offset: ^skip
+    results = Repo.all(query)
+    %{results: results, total_rows: length(results)}
+  end
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking transaction changes.
