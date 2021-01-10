@@ -33,9 +33,9 @@ For **junior engineers** complete any 1 of these objectives and include a basic 
      * [x] mutations
 
  * Write a new schema, queries, and mutations to add companies to the app
-   * [ ] users should belong to a company and we should require transactions to pass in a company_id
-     * [ ] data layer
-     * [ ] mutations
+   * [x] users should belong to a company and we should require transactions to pass in a company_id
+     * [x] data layer
+     * [x] mutations
    * [ ] company should have a `name`, `credit_line`, and `available_credit` which would be the `credit_line` minus the total amount of `transactions` for the company
      * [x] data layer
      * [ ] mutations

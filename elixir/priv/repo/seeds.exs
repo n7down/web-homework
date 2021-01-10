@@ -18,21 +18,23 @@ alias Homework.Repo
 # companies
 %Company{name: "parks and recreation", credit_line: 100.0, available_credit: 50.0} |> Repo.insert!()
 
+company = Homework.Companies.get_company_by_name!("parks and recreation") 
+
 # FIXME: add company_id to user - with get_company_by_name
 # FIXME: use company_id with each user
 # users
-%User{first_name: "leslie", last_name: "knope", dob: "01181975"} |> Repo.insert!()
-%User{first_name: "april", last_name: "ludgate", dob: "04131989"} |> Repo.insert!()
-%User{first_name: "andy", last_name: "dwyer", dob: "01011981"} |> Repo.insert!()
-%User{first_name: "ron", last_name: "swanson", dob: "05061970"} |> Repo.insert!()
-%User{first_name: "donna", last_name: "meagle", dob: "04121970"} |> Repo.insert!()
-%User{first_name: "ann", last_name: "perkins", dob: "07201976"} |> Repo.insert!()
-%User{first_name: "ben", last_name: "wyatt", dob: "11171974"} |> Repo.insert!()
-%User{first_name: "jerry", last_name: "gergich", dob: "01291948"} |> Repo.insert!()
-%User{first_name: "tom", last_name: "haverford", dob: "04281985"} |> Repo.insert!()
-%User{first_name: "jean-ralphio", last_name: "saperstein", dob: "12121986"} |> Repo.insert!()
-%User{first_name: "chris", last_name: "traeger", dob: "10261967"} |> Repo.insert!()
-%User{first_name: "tammy", last_name: "swanson", dob: "04221965"} |> Repo.insert!()
+%User{first_name: "leslie", last_name: "knope", dob: "01181975", company_id: company.id} |> Repo.insert!()
+%User{first_name: "april", last_name: "ludgate", dob: "04131989", company_id: company.id} |> Repo.insert!()
+%User{first_name: "andy", last_name: "dwyer", dob: "01011981", company_id: company.id} |> Repo.insert!()
+%User{first_name: "ron", last_name: "swanson", dob: "05061970", company_id: company.id} |> Repo.insert!()
+%User{first_name: "donna", last_name: "meagle", dob: "04121970", company_id: company.id} |> Repo.insert!()
+%User{first_name: "ann", last_name: "perkins", dob: "07201976", company_id: company.id} |> Repo.insert!()
+%User{first_name: "ben", last_name: "wyatt", dob: "11171974", company_id: company.id} |> Repo.insert!()
+%User{first_name: "jerry", last_name: "gergich", dob: "01291948", company_id: company.id} |> Repo.insert!()
+%User{first_name: "tom", last_name: "haverford", dob: "04281985", company_id: company.id} |> Repo.insert!()
+%User{first_name: "jean-ralphio", last_name: "saperstein", dob: "12121986", company_id: company.id} |> Repo.insert!()
+%User{first_name: "chris", last_name: "traeger", dob: "10261967", company_id: company.id} |> Repo.insert!()
+%User{first_name: "tammy", last_name: "swanson", dob: "04221965", company_id: company.id} |> Repo.insert!()
 
 # merchants
 %Merchant{name: "very good building co", description: "ron swanson finally jumped overboard from the local government ship and decided to do what he does best - build things."} |> Repo.insert!() 
@@ -50,6 +52,6 @@ merchant = Homework.Merchants.get_merchant_by_name!("paunch burger")
 knope_user = Homework.Users.get_user_by_last_name!("knope") 
 saperstein_user = Homework.Users.get_user_by_last_name!("saperstein") 
 
-%Transaction{amount: 30, credit: true, debit: false, description: "bought a paunch burger", merchant_id: merchant.id, user_id: knope_user.id} |> Repo.insert!()
-%Transaction{amount: 50, credit: true, debit: false, description: "bought a large paunch burger", merchant_id: merchant.id, user_id: saperstein_user.id} |> Repo.insert!()
+%Transaction{amount: 30, credit: true, debit: false, description: "bought a paunch burger", merchant_id: merchant.id, user_id: knope_user.id, company_id: company.id} |> Repo.insert!()
+%Transaction{amount: 50, credit: true, debit: false, description: "bought a large paunch burger", merchant_id: merchant.id, user_id: saperstein_user.id, company_id: company.id} |> Repo.insert!()
 

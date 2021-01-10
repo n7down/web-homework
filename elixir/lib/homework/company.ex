@@ -38,6 +38,28 @@ defmodule Homework.Companies do
   def get_company!(id), do: Repo.get!(Company, id)
 
   @doc """
+  Gets a single company by name.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_company_by_name!(123)
+      %User{}
+
+      iex> get_company_by_name!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_company_by_name!(name) do 
+    query = from(
+      c in Company, 
+      where: c.name == ^name
+    )
+    Repo.one(query)
+  end
+
+  @doc """
   Creates a company.
 
   ## Examples

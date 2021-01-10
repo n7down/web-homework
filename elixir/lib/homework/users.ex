@@ -131,6 +131,13 @@ defmodule Homework.Users do
     )
     result = Repo.all(query)
     {:ok, result}
+
+    # TODO: see if something like this will work
+    # %User{}
+    # |>  from(u in User, 
+    # |>  where: ilike(u.first_name, ^"%#{first_name}%"),
+    # |>  where: ilike(u.last_name, ^"%#{last_name}%")
+    # |> Repo.all(query)
   end
 
   @doc """
