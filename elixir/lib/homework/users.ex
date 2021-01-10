@@ -113,31 +113,15 @@ defmodule Homework.Users do
 
   @doc """
   Search for a user by first and last name.
-
-  ## Examples
-
-      iex> search_user(user)
-      {:ok, %User{}}
-
-      iex> search_user(user)
-      {:error, %Ecto.Changeset{}}
-
   """
   def search_user(first_name, last_name) do 
     query = from(
       u in User, 
+      select: u,
       where: ilike(u.first_name, ^"%#{first_name}%"),
       where: ilike(u.last_name, ^"%#{last_name}%")
     )
-    result = Repo.all(query)
-    {:ok, result}
-
-    # TODO: see if something like this will work
-    # %User{}
-    # |>  from(u in User, 
-    # |>  where: ilike(u.first_name, ^"%#{first_name}%"),
-    # |>  where: ilike(u.last_name, ^"%#{last_name}%")
-    # |> Repo.all(query)
+    Repo.all(query) 
   end
 
   @doc """
