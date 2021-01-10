@@ -22,16 +22,30 @@ For **junior engineers** complete any 1 of these objectives and include a basic 
 ## Objectives
 
  * Write filtering options for transactions, users, and/or merchants. This could include:
-   * fuzzy searching for a user by first and last name
-   * fuzzy searching for a merchant by name
-   * getting back transactions with an amount between `min` and `max` arguments
+   * [x] fuzzy searching for a user by first and last name
+     * [x] data layer
+     * [x] mutations
+   * [x] fuzzy searching for a merchant by name
+     * [x] data layer
+     * [x] mutations
+   * [x] getting back transactions with an amount between `min` and `max` arguments
+     * [x] data layer
+     * [x] mutations
 
  * Write a new schema, queries, and mutations to add companies to the app
-   * users should belong to a company and we should require transactions to pass in a company_id
-   * company should have a `name`, `credit_line`, and `available_credit` which would be the `credit_line` minus the total amount of `transactions` for the company
+   * [ ] users should belong to a company and we should require transactions to pass in a company_id
+     * [ ] data layer
+     * [ ] mutations
+   * [ ] company should have a `name`, `credit_line`, and `available_credit` which would be the `credit_line` minus the total amount of `transactions` for the company
+     * [x] data layer
+     * [ ] mutations
 
- * Seed the database.  Possible solutions include:
-   * Implement provided `seeds.ex` file
+ * Seed the database. Possible solutions include:
+   * [x] Implement provided `seeds.ex` file
+     * [x] Users
+     * [x] Transactions
+     * [x] Companies
+     * [x] Merchants
    * Write a `.sql` file that can be ingested by the database
 
  * Write tests for the resolvers & mutations.
@@ -39,9 +53,15 @@ For **junior engineers** complete any 1 of these objectives and include a basic 
    * Testing that you can get create/update/delete from the resolver mutations
 
  * Add a pagination layer to the queries
-   * should include a `limit` (how many rows to return) and `skip` (how many rows to skip) options
-   * should return a `total_rows` (how many total rows exist)
-   * Bonus: Make it a wrapper that all the schemas can tap into.
+   * [ ] should include a `limit` (how many rows to return) and `skip` (how many rows to skip) options
+     * [x] data layer
+     * [ ] mutations
+   * [ ] should return a `total_rows` (how many total rows exist)
+     * [x] data layer
+     * [ ] mutations
+   * [ ] Bonus: Make it a wrapper that all the schemas can tap into.
+     * [ ] data layer
+     * [ ] mutations
 
  * Allow the mutations to handle a decimal amount for transactions (the database stores it as cents)
    * Mutations need to convert the Decimal amount to an Integer e.g. 24.68 becomes 2468
