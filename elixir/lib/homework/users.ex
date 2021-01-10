@@ -38,6 +38,28 @@ defmodule Homework.Users do
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
+  Gets a single user by last name.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user_by_last_name!(123)
+      %User{}
+
+      iex> get_user_by_last_name!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user_by_last_name!(name) do 
+    query = from(
+      u in User, 
+      where: u.last_name == ^name
+    )
+    Repo.one(query)
+  end
+
+  @doc """
   Creates a user.
 
   ## Examples
@@ -101,10 +123,14 @@ defmodule Homework.Users do
       {:error, %Ecto.Changeset{}}
 
   """
-  def search_user(firstName, lastName) do 
-    query = from u in User, 
-      where: ilike(u.first_name, ^"%#{firstName}%") and ilike(u.last_name, ^"%#{lastName}%")
-    Repo.all(query)
+  def search_user(first_name, last_name) do 
+    query = from(
+      u in User, 
+      where: ilike(u.first_name, ^"%#{first_name}%"),
+      where: ilike(u.last_name, ^"%#{last_name}%")
+    )
+    result = Repo.all(query)
+    {:ok, result}
   end
 
   @doc """

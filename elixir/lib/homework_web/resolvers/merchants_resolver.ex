@@ -50,4 +50,17 @@ defmodule HomeworkWeb.Resolvers.MerchantsResolver do
         {:error, "could not update merchant: #{inspect(error)}"}
     end
   end
+
+  @doc """
+  Search for a merchant for an given name specified.
+  """
+  def search_merchant(_root, %{name: name}, _info) do
+    case Merchants.search_merchant(name) do
+      {:ok, merchant} ->
+        {:ok, merchant}
+
+      error ->
+        {:error, "could not find merchant: #{inspect(error)}"}
+    end
+  end
 end

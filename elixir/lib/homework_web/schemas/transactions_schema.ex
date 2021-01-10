@@ -60,5 +60,13 @@ defmodule HomeworkWeb.Schemas.TransactionsSchema do
 
       resolve(&TransactionsResolver.delete_transaction/3)
     end
+
+    @desc "fuzzy search for a transaction by a min and max amount "
+    field :search_transaction, list_of(:transaction) do
+      arg(:min, non_null(:integer))
+      arg(:max, non_null(:integer))
+
+      resolve(&TransactionsResolver.search_transaction/3)
+    end
   end
 end

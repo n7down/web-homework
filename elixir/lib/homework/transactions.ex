@@ -94,17 +94,18 @@ defmodule Homework.Transactions do
 
   ## Examples
 
-      iex> search_transaction(user)
-      {:ok, %User{}}
+      iex> search_transaction(transaction)
+      {:ok, %Transaction{}}
 
-      iex> search_transaction(user)
+      iex> search_transaction(transaction)
       {:error, %Ecto.Changeset{}}
 
   """
   def search_transaction(min, max) do 
     query = from t in Transaction, 
-      where: (t.ammount > ^min and t.ammount < ^max)
-    Repo.all(query)
+      where: (t.amount >= ^min and t.amount <= ^max)
+    result = Repo.all(query)
+    {:ok, result}
   end
 
   @doc """

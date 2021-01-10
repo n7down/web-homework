@@ -38,5 +38,12 @@ defmodule HomeworkWeb.Schemas.MerchantsSchema do
 
       resolve(&MerchantsResolver.delete_merchant/3)
     end
+
+    @desc "fuzzy search for a user by first and last name"
+    field :search_merchant, list_of(:merchant) do
+      arg(:name, non_null(:string))
+
+      resolve(&MerchantsResolver.search_merchant/3)
+    end
   end
 end

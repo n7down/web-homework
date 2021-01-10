@@ -42,12 +42,12 @@ defmodule HomeworkWeb.Schemas.UsersSchema do
       resolve(&UsersResolver.delete_user/3)
     end
 
-    # @desc "search for a user by first and last name"
-    # field :search_user, :user do
-    #   arg(:first_name, non_null(:string))
-    #   arg(:last_name, non_null(:string))
+    @desc "fuzzy search for a user by first and last name"
+    field :search_user, list_of(:user) do
+      arg(:first_name, non_null(:string))
+      arg(:last_name, non_null(:string))
 
-    #   resolve(&UsersResolver.search_user/3)
-    # end
+      resolve(&UsersResolver.search_user/3)
+    end
   end
 end

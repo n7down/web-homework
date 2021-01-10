@@ -1,7 +1,7 @@
 defmodule HomeworkWeb.Resolvers.UsersResolver do
   alias Homework.Users
 
-  @doc """
+  @doc """ 
   Get a list of users
   """
   def users(_root, args, _info) do
@@ -50,4 +50,19 @@ defmodule HomeworkWeb.Resolvers.UsersResolver do
         {:error, "could not update user: #{inspect(error)}"}
     end
   end
+
+  @doc """
+  Search for a user for an given first_name and last_name specified.
+  """
+  def search_user(_root, %{first_name: first_name, last_name: last_name}, _info) do
+    case Users.search_user(first_name, last_name) do
+      {:ok, user} ->
+        {:ok, user}
+
+      error ->
+        {:error, "could not find user: #{inspect(error)}"}
+    end
+  end
 end
+
+

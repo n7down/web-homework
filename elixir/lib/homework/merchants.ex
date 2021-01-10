@@ -38,6 +38,28 @@ defmodule Homework.Merchants do
   def get_merchant!(id), do: Repo.get!(Merchant, id)
 
   @doc """
+  Gets a single merchant by name.
+
+  Raises `Ecto.NoResultsError` if the Merchant does not exist.
+
+  ## Examples
+
+      iex> get_merchant_by_last_name!(123)
+      %Merchant{}
+
+      iex> get_merchant_by_last_name!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_merchant_by_name!(name) do 
+    query = from(
+      m in Merchant, 
+      where: m.name == ^name
+    )
+    Repo.one(query)
+  end
+
+  @doc """
   Creates a merchant.
 
   ## Examples
@@ -104,7 +126,8 @@ defmodule Homework.Merchants do
   def search_merchant(name) do 
     query = from m in Merchant, 
       where: ilike(m.name, ^"%#{name}%")
-    Repo.all(query)
+    result = Repo.all(query)
+    {:ok, result}
   end
 
   @doc """
