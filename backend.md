@@ -49,8 +49,8 @@ For **junior engineers** complete any 1 of these objectives and include a basic 
    * Write a `.sql` file that can be ingested by the database
 
  * Write tests for the resolvers & mutations.
-   * Testing that you can get information from the resolver queries
-   * Testing that you can get create/update/delete from the resolver mutations
+   * [ ] Testing that you can get information from the resolver queries
+   * [ ] Testing that you can get create/update/delete from the resolver mutations
 
  * Add a pagination layer to the queries
    * [ ] should include a `limit` (how many rows to return) and `skip` (how many rows to skip) options
@@ -64,8 +64,8 @@ For **junior engineers** complete any 1 of these objectives and include a basic 
      * [ ] mutations
 
  * Allow the mutations to handle a decimal amount for transactions (the database stores it as cents)
-   * Mutations need to convert the Decimal amount to an Integer e.g. 24.68 becomes 2468
-   * The queries should convert the Integer amount to a Decimal e.g. 2468 becomes 24.68
+   * [ ] Mutations need to convert the Decimal amount to an Integer e.g. 24.68 becomes 2468
+   * [ ] The queries should convert the Integer amount to a Decimal e.g. 2468 becomes 24.68
 
 ## Bonus points
  * Find the bug with transactions
