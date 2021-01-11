@@ -5,8 +5,7 @@ defmodule Homework.Companies.Company do
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "companies" do
     field(:name, :string)
-    field(:credit_line, :float)
-    field(:available_credit, :float)
+    field(:credit_line, :integer)
 
     timestamps()
   end
@@ -14,7 +13,7 @@ defmodule Homework.Companies.Company do
   @doc false
   def changeset(company, attrs) do
     company
-    |> cast(attrs, [:name, :credit_line, :available_credit])
-    |> validate_required([:name, :credit_line, :available_credit])
+    |> cast(attrs, [:name, :credit_line])
+    |> validate_required([:name, :credit_line])
   end
 end

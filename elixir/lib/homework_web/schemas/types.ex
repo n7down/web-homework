@@ -9,4 +9,5 @@ defmodule HomeworkWeb.Schemas.Types do
   import_types(HomeworkWeb.Schemas.TransactionsSchema)
   import_types(HomeworkWeb.Schemas.UsersSchema)
   # import_types(HomeworkWeb.Schemas.UsersSchema)
+  import_types(HomeworkWeb.Schemas.CompaniesSchema)
 end

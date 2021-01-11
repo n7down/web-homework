@@ -104,8 +104,7 @@ defmodule Homework.Transactions do
   def search_transaction(min, max) do 
     query = from t in Transaction, 
       where: (t.amount >= ^min and t.amount <= ^max)
-    result = Repo.all(query)
-    {:ok, result}
+    Repo.all(query)
   end
 
   @doc """

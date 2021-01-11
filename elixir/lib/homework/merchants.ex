@@ -126,8 +126,7 @@ defmodule Homework.Merchants do
   def search_merchant(name) do 
     query = from m in Merchant, 
       where: ilike(m.name, ^"%#{name}%")
-    result = Repo.all(query)
-    {:ok, result}
+    Repo.all(query)
   end
 
   @doc """

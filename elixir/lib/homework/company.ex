@@ -7,6 +7,7 @@ defmodule Homework.Companies do
   alias Homework.Repo
 
   alias Homework.Companies.Company
+  alias Homework.Transactions.Transaction
 
   @doc """
   Returns the list of companies.
@@ -18,7 +19,18 @@ defmodule Homework.Companies do
 
   """
   def list_company(_args) do
-    Repo.all(Company)
+    child_query = from t in Transaction, 
+      select: %{total_amount: sum(t.amount), company_id: t.company_id},
+      group_by: t.company_id
+    query = from c in Company,
+      left_join: t in subquery(child_query), on: t.company_id == c.id,
+      select: %{
+        id: c.id,
+        name: c.name, 
+        credit_line: c.credit_line, 
+        available_credit: fragment("abs(? - coalesce(?,0)) as available_credit", c.credit_line, t.total_amount)
+      }
+    Repo.all(query)
   end
 
   @doc """
@@ -35,6 +47,7 @@ defmodule Homework.Companies do
       ** (Ecto.NoResultsError)
 
   """
+  # FIXME: return credit_line from query
   def get_company!(id), do: Repo.get!(Company, id)
 
   @doc """
@@ -42,6 +55,7 @@ defmodule Homework.Companies do
 
   Raises `Ecto.NoResultsError` if the User does not exist.
 
+  # FIXME: return credit_line from query
   ## Examples
 
       iex> get_company_by_name!(123)
@@ -62,6 +76,7 @@ defmodule Homework.Companies do
   @doc """
   Creates a company.
 
+  # FIXME: remove credit_line column
   ## Examples
 
       iex> create_company(%{field: value})

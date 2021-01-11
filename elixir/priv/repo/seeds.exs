@@ -16,12 +16,10 @@ alias Homework.Transactions.Transaction
 alias Homework.Repo
 
 # companies
-%Company{name: "parks and recreation", credit_line: 100.0, available_credit: 50.0} |> Repo.insert!()
+%Company{name: "parks and recreation", credit_line: 1000} |> Repo.insert!()
 
 company = Homework.Companies.get_company_by_name!("parks and recreation") 
 
-# FIXME: add company_id to user - with get_company_by_name
-# FIXME: use company_id with each user
 # users
 %User{first_name: "leslie", last_name: "knope", dob: "01181975", company_id: company.id} |> Repo.insert!()
 %User{first_name: "april", last_name: "ludgate", dob: "04131989", company_id: company.id} |> Repo.insert!()

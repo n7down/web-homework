@@ -72,11 +72,8 @@ defmodule HomeworkWeb.Resolvers.TransactionsResolver do
   """
   def search_transaction(_root, %{min: min, max: max}, _info) do
     case Transactions.search_transaction(min, max) do
-      {:ok, transactions} ->
-        {:ok, transactions}
-
-      error ->
-        {:error, "could not find transaction: #{inspect(error)}"}
+      [] -> {:error, "could not find the transaction"}
+      transaction -> {:ok, transaction}
     end
   end
 end

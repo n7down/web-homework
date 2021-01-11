@@ -56,11 +56,8 @@ defmodule HomeworkWeb.Resolvers.MerchantsResolver do
   """
   def search_merchant(_root, %{name: name}, _info) do
     case Merchants.search_merchant(name) do
-      {:ok, merchant} ->
-        {:ok, merchant}
-
-      error ->
-        {:error, "could not find merchant: #{inspect(error)}"}
+      [] -> {:error, "could not find the merchant"}
+      merchant -> {:ok, merchant}
     end
   end
 end
