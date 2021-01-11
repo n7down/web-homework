@@ -21,55 +21,35 @@ defmodule HomeworkWeb.Resolvers.CompaniesResolver do
     end
   end
 
-  # @doc """
-  # Updates a user for an id with args specified.
-  # """
-  # def update_user(_root, %{id: id} = args, _info) do
-  #   user = Users.get_user!(id)
+  @doc """
+  Updates a user for an id with args specified.
+  """
+  def update_company(_root, %{id: id} = args, _info) do
+    company = Companies.get_company!(id)
 
-  #   case Users.update_user(user, args) do
-  #     {:ok, user} ->
-  #       {:ok, user}
+    case Companies.update_company(company, args) do
+      {:ok, company} ->
+        {:ok, company}
 
-  #     error ->
-  #       {:error, "could not update user: #{inspect(error)}"}
-  #   end
-  # end
+      error ->
+        {:error, "could not update user: #{inspect(error)}"}
+    end
+  end
 
-  # @doc """
-  # Deletes a user for an id
-  # """
-  # def delete_user(_root, %{id: id}, _info) do
-  #   user = Users.get_user!(id)
+  @doc """
+  Deletes a user for an id
+  """
+  def delete_company(_root, %{id: id}, _info) do
+    company = Companies.get_company!(id)
 
-  #   case Users.delete_user(user) do
-  #     {:ok, user} ->
-  #       {:ok, user}
+    case Companies.delete_company(company) do
+      {:ok, company} ->
+        {:ok, company}
 
-  #     error ->
-  #       {:error, "could not update user: #{inspect(error)}"}
-  #   end
-  # end
-
-  # @doc """
-  # Search for a user for an given first_name and last_name specified.
-  # """
-  # def search_user(_root, %{first_name: first_name, last_name: last_name}, _info) do
-  #   case Users.search_user(first_name, last_name) do
-  #     [] -> {:error, "could not find the user"}
-  #     user -> {:ok, user}
-  #   end
-  # end
- 
-  # @doc """
-  # Search for a user for an given first_name and last_name specified.
-  # """
-  # def search_user(_root, %{first_name: first_name, last_name: last_name}, _info) do
-  #   case Users.search_user(first_name, last_name) do
-  #     [] -> {:error, "could not find the user"}
-  #     user -> {:ok, user}
-  #   end
-  # end
+      error ->
+        {:error, "could not update user: #{inspect(error)}"}
+    end
+  end
 end
 
 

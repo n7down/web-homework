@@ -47,7 +47,7 @@ defmodule HomeworkWeb.Resolvers.UsersResolver do
         {:ok, user}
 
       error ->
-        {:error, "could not update user: #{inspect(error)}"}
+        {:error, "could not delete user: #{inspect(error)}"}
     end
   end
 

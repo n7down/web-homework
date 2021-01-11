@@ -28,7 +28,7 @@ defmodule Homework.Companies do
         id: c.id,
         name: c.name, 
         credit_line: c.credit_line, 
-        available_credit: fragment("abs(? - coalesce(?,0)) as available_credit", c.credit_line, t.total_amount)
+        available_credit: fragment("? - coalesce(?,0) as available_credit", c.credit_line, t.total_amount)
       }
     Repo.all(query)
   end
@@ -47,7 +47,6 @@ defmodule Homework.Companies do
       ** (Ecto.NoResultsError)
 
   """
-  # FIXME: return credit_line from query
   def get_company!(id), do: Repo.get!(Company, id)
 
   @doc """
@@ -55,7 +54,6 @@ defmodule Homework.Companies do
 
   Raises `Ecto.NoResultsError` if the User does not exist.
 
-  # FIXME: return credit_line from query
   ## Examples
 
       iex> get_company_by_name!(123)
@@ -76,7 +74,6 @@ defmodule Homework.Companies do
   @doc """
   Creates a company.
 
-  # FIXME: remove credit_line column
   ## Examples
 
       iex> create_company(%{field: value})

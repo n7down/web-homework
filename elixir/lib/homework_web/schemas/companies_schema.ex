@@ -24,30 +24,20 @@ defmodule HomeworkWeb.Schemas.CompaniesSchema do
       resolve(&CompaniesResolver.create_company/3)
     end
 
-  #   @desc "Update a new user"
-  #   field :update_user, :user do
-  #     arg(:id, non_null(:id))
-  #     arg(:company_id, non_null(:id))
-  #     arg(:dob, non_null(:string))
-  #     arg(:first_name, non_null(:string))
-  #     arg(:last_name, non_null(:string))
+    @desc "Update a new company"
+    field :update_company, :company do
+      arg(:id, non_null(:id))
+      arg(:name, non_null(:string))
+      arg(:credit_line, non_null(:integer))
 
-  #     resolve(&UsersResolver.update_user/3)
-  #   end
+      resolve(&CompaniesResolver.update_company/3)
+    end
 
-  #   @desc "delete an existing user"
-  #   field :delete_user, :user do
-  #     arg(:id, non_null(:id))
+    @desc "delete an existing company"
+    field :delete_company, :company do
+      arg(:id, non_null(:id))
 
-  #     resolve(&UsersResolver.delete_user/3)
-  #   end
-
-  #   @desc "fuzzy search for a user by first and last name"
-  #   field :search_user, list_of(:user) do
-  #     arg(:first_name, non_null(:string))
-  #     arg(:last_name, non_null(:string))
-
-  #     resolve(&UsersResolver.search_user/3)
-  #   end
+      resolve(&CompaniesResolver.delete_company/3)
+    end
   end
 end
