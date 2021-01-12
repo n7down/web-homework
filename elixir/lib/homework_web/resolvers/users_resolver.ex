@@ -1,18 +1,19 @@
 defmodule HomeworkWeb.Resolvers.UsersResolver do
-  alias Homework.Users
+  alias Homework.Persistence
+  alias Homework.PostgresqlPersistence
 
   @doc """ 
   Get a list of users
   """
-  def users(_root, args, _info) do
-    {:ok, Users.list_users(args)}
+  def users(_root, _args, _info) do
+    {:ok, Persistence.Users.list_users!(PostgresqlPersistence.Users)}
   end
 
   @doc """
   Creates a user
   """
   def create_user(_root, args, _info) do
-    case Users.create_user(args) do
+    case Persistence.Users.create_user!(PostgresqlPersistence.Users, args) do
       {:ok, user} ->
         {:ok, user}
 
@@ -25,9 +26,9 @@ defmodule HomeworkWeb.Resolvers.UsersResolver do
   Updates a user for an id with args specified.
   """
   def update_user(_root, %{id: id} = args, _info) do
-    user = Users.get_user!(id)
+    user = Persistence.Users.get_user!(PostgresqlPersistence.Users, id)
 
-    case Users.update_user(user, args) do
+    case Persistence.Users.update_user!(PostgresqlPersistence.Users, user, args) do
       {:ok, user} ->
         {:ok, user}
 
@@ -40,9 +41,9 @@ defmodule HomeworkWeb.Resolvers.UsersResolver do
   Deletes a user for an id
   """
   def delete_user(_root, %{id: id}, _info) do
-    user = Users.get_user!(id)
+    user = Persistence.Users.get_user!(PostgresqlPersistence.Users, id)
 
-    case Users.delete_user(user) do
+    case Persistence.Users.delete_user!(PostgresqlPersistence.Users, user) do
       {:ok, user} ->
         {:ok, user}
 
@@ -55,7 +56,7 @@ defmodule HomeworkWeb.Resolvers.UsersResolver do
   Search for a user for an given first_name and last_name specified.
   """
   def search_user(_root, %{first_name: first_name, last_name: last_name}, _info) do
-    case Users.search_user(first_name, last_name) do
+    case Persistence.Users.search_user!(PostgresqlPersistence.Users, first_name, last_name) do
       [] -> {:error, "could not find the user"}
       user -> {:ok, user}
     end
