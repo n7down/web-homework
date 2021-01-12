@@ -1,5 +1,5 @@
 defmodule Homework.PostgresqlPersistence.Users do
-  @behaviour Homework.Persistence
+  @behaviour Homework.Persistence.Users
 
   @moduledoc """
   The Users context.
