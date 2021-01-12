@@ -1,18 +1,19 @@
 defmodule HomeworkWeb.Resolvers.CompaniesResolver do
-  alias Homework.Companies
+  alias Homework.Persistence
+  alias Homework.PostgresqlPersistence
 
   @doc """ 
   Get a list of companies
   """
-  def companies(_root, args, _info) do
-    {:ok, Companies.list_company(args)}
+  def companies(_root, _args, _info) do
+    {:ok, Persistence.Companies.list_companies!(PostgresqlPersistence.Companies)}
   end
 
   @doc """
   Creates a company
   """
   def create_company(_root, args, _info) do
-    case Companies.create_company(args) do
+    case Persistence.Companies.create_company!(PostgresqlPersistence.Companies, args) do
       {:ok, company} ->
         {:ok, company}
 
@@ -25,9 +26,9 @@ defmodule HomeworkWeb.Resolvers.CompaniesResolver do
   Updates a user for an id with args specified.
   """
   def update_company(_root, %{id: id} = args, _info) do
-    company = Companies.get_company!(id)
+    company = Persistence.Companies.get_company!(PostgresqlPersistence.Companies, id)
 
-    case Companies.update_company(company, args) do
+    case Persistence.Companies.update_company!(PostgresqlPersistence.Companies, company, args) do
       {:ok, company} ->
         {:ok, company}
 
@@ -40,9 +41,9 @@ defmodule HomeworkWeb.Resolvers.CompaniesResolver do
   Deletes a user for an id
   """
   def delete_company(_root, %{id: id}, _info) do
-    company = Companies.get_company!(id)
+    company = Persistence.Companies.get_company!(PostgresqlPersistence.Companies, id)
 
-    case Companies.delete_company(company) do
+    case Persistence.Companies.delete_company!(PostgresqlPersistence.Companies, company) do
       {:ok, company} ->
         {:ok, company}
 

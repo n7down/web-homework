@@ -8,7 +8,7 @@ defmodule Homework.Persistence.Users do
   @callback create_user(map()) :: {:ok, %User{}} | {:error, %Ecto.Changeset{}}
   @callback update_user(%User{}, map()) :: {:ok, %User{}} | {:error, %Ecto.Changeset{}}
   @callback delete_user(%User{}) :: {:ok, %User{}} | {:error, %Ecto.Changeset{}}
-  @callback search_user(:integer, :integer) :: %User{} | %Ecto.NoResultsError{}
+  @callback search_user(charlist(), charlist()) :: %User{} | %Ecto.NoResultsError{}
   # @callback pageinate(:integer, :integer) :: list(%User{}) | %Ecto.NoResultsError{}
   # @callback change_user(%User{} = user, attrs \\ %{}) :: %Ecto.Changeset{}
   
