@@ -15,10 +15,13 @@ alias Homework.Companies.Company
 alias Homework.Transactions.Transaction
 alias Homework.Repo
 
+alias Homework.Persistence
+alias Homework.PostgresqlPersistence
+
 # companies
 %Company{name: "parks and recreation", credit_line: 1000} |> Repo.insert!()
 
-company = Homework.Companies.get_company_by_name!("parks and recreation") 
+company = Persistence.Companies.get_company_by_name!(PostgresqlPersistence.Companies,"parks and recreation") 
 
 # users
 %User{first_name: "leslie", last_name: "knope", dob: "01181975", company_id: company.id} |> Repo.insert!()
@@ -46,9 +49,9 @@ company = Homework.Companies.get_company_by_name!("parks and recreation")
 %Merchant{name: "wamapoke casino", description: "the wamapoke casino is their way of, 'slowly taking back their money back from white people, one quarter at a time.'"} |> Repo.insert!() 
 %Merchant{name: "cozys bar", description: "every person in pawnee would be flocking too simply to get an earful from their favorite jazz saxophonist, duke silver."} |> Repo.insert!() 
 
-merchant = Homework.Merchants.get_merchant_by_name!("paunch burger") 
-knope_user = Homework.Users.get_user_by_last_name!("knope") 
-saperstein_user = Homework.Users.get_user_by_last_name!("saperstein") 
+merchant = Persistence.Merchants.get_merchant_by_name!(PostgresqlPersistence.Merchants, "paunch burger") 
+knope_user = Persistence.Users.get_user_by_last_name!(PostgresqlPersistence.Users, "knope") 
+saperstein_user = Persistence.Users.get_user_by_last_name!(PostgresqlPersistence.Users, "saperstein") 
 
 %Transaction{amount: 30, credit: true, debit: false, description: "bought a paunch burger", merchant_id: merchant.id, user_id: knope_user.id, company_id: company.id} |> Repo.insert!()
 %Transaction{amount: 50, credit: true, debit: false, description: "bought a large paunch burger", merchant_id: merchant.id, user_id: saperstein_user.id, company_id: company.id} |> Repo.insert!()
