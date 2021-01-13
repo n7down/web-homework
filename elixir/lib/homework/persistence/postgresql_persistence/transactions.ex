@@ -19,7 +19,7 @@ defmodule Homework.PostgresqlPersistence.Transactions do
       [%Transaction{}, ...]
 
   """
-  def list_transactions(_args) do
+  def list_transactions() do
     Repo.all(Transaction)
   end
 

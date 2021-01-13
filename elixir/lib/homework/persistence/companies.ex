@@ -33,8 +33,8 @@ defmodule Homework.Persistence.Companies do
     end
   end
 
-  def get_company_by_last_name!(impl, company) do
-    case impl.get_company_by_last_name!(company) do
+  def get_company_by_name!(impl, company) do
+    case impl.get_company_by_name!(company) do
       :error -> :error
       company -> company 
     end
